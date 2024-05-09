@@ -1,0 +1,7 @@
+{
+  "name": "CEN333Project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
