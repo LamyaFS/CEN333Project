@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class SignInPage {
   username: string = '';
-  password: string = ''; // Initialize password here
+  password: string = ''; 
 
   constructor(
     private router: Router,

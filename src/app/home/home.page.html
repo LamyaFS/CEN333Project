@@ -1,14 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      ECOSWAP
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content class="ion-padding">
+  <div class="logo-container ion-text-center">
+    <img src="..\..\assets\logo\logosc.png" alt="Logo" class="logo">
+  </div>
+  
   <div class="ion-text-center">
-    <ion-button expand="block" (click)="signIn()">Sign In</ion-button>
-    <ion-button expand="block" (click)="signUp()">Sign Up</ion-button>
+    <ion-button shape="round" color="light" (click)="signIn()">Sign In</ion-button>
+    <ion-button shape="round" color="secondary" (click)="signUp()">Sign Up</ion-button>
   </div>
 </ion-content>
