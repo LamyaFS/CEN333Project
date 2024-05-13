@@ -10,7 +10,7 @@ export class FireserviceService {
     public firestore: AngularFirestore,
     public auth: AngularFireAuth
   ) {}
-  loginWithEmail(Details) {
+  loginWithEmail(Details: { email: any; password: any; }) {
     return this.auth.signInWithEmailAndPassword(Details.email, Details.password);
   }
 

@@ -2,6 +2,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { FireserviceService } from '../firebase.service';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -9,44 +11,42 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./sign-in.page.scss'],
 })
 export class SignInPage {
-  username: string = '';
-  password: string = ''; 
+
+  public email:any;
+  public password:any;
 
   constructor(
-    private router: Router,
-    private alertController: AlertController
-  ) {}
+    public router:Router,
+    public fireService:FireserviceService
+  ) { }
 
-  login() {
-    if (this.username === '' && this.password === 'password') {
-      this.router.navigate(['/main']);
-    } else {
-      this.presentAlert('Invalid Credentialusers', 'Please check your username and password.');
-    }
+  ngOnInit() {
   }
 
-  forgotPassword() {
-    this.router.navigate(['/forgot-password']);
-  }
 
-  async presentAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK']
-    });
-    await alert.present();
+  login(){
+    this.fireService.loginWithEmail({email:this.email,password:this.password}).then(res=>{
+      console.log(res);
+      if(res.user && res.user.uid){ // Add null/undefined check
+        this.fireService.getDetails({uid:res.user.uid}).subscribe(res=>{
+          console.log(res);
+          alert('Welcome '+ res['name']);
+        },err=>{
+          console.log(err);
+        });
+      }
+    },err=>{
+      alert(err.message)
+      console.log(err);
+    })
   }
-
-  goBack() {
-    this.router.navigate(['/home']);
-  }
+  
   
   signUp() {
     this.router.navigate(['/SignUp']);
   }
   Login() {
-    // FOR DEFAULT
     this.router.navigate(['/main']);
   }
 }
+
