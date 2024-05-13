@@ -18,10 +18,10 @@ export class SignInPage {
   ) {}
 
   login() {
-    if (this.username === 'user' && this.password === 'password') {
+    if (this.username === '' && this.password === 'password') {
       this.router.navigate(['/main']);
     } else {
-      this.presentAlert('Invalid Credentials', 'Please check your username and password.');
+      this.presentAlert('Invalid Credentialusers', 'Please check your username and password.');
     }
   }
 
